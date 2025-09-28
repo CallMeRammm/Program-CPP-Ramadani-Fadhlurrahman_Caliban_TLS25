@@ -1,0 +1,69 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+char kode;
+string kata,angka;
+int i,j,panjang;
+int x = 0;
+int a = 0;
+
+int main(){
+    angka = "0123456789";
+    cout<<"masukkan kata misterius = ";
+    cin>>kata;
+    panjang = kata.length();
+
+    for(i = 0 ; i < panjang ; i++){
+        for(j = 0 ; j < 10; j++){
+            if (kata[i] == angka[j]){
+                x = x*10 + int(j);
+            }
+        }
+    }
+
+    cout<<"kata misterius = ";
+    
+    for(i = 0 ; i < panjang ; i++){
+        cout<<kata[i];
+    }
+    
+    cout<<"\napakah kode ditengah menunjukkan huruf terakhir kata misterius = ";
+    kode = static_cast<char>(x);
+    if(kode == kata[panjang - 1]){
+        cout<<"ya";
+    }else{
+        cout<<"kode ascii menunjukkan huruf vokal"<<endl;
+        cout<<"menambahkan huruf vokal ke index terakhir kata misterius"<<endl;
+        kata += kode;
+        panjang++;
+    }
+
+    cout<<"\nmenghapus angka ditengah tengah"<<endl;
+    a = 0;
+    i = 0;
+    j = 0;
+    while ( a < panjang){
+        for(i = 0; i < panjang ; i++){
+            for(j = 0; j < 10; j++){
+                if (kata[i] == angka[j]){
+                    kata.erase(i,1);
+                    panjang--;
+                }
+            }
+        }
+        a++;
+    }
+    cout<<"hasil kata misterius = "<< kata<< endl;
+
+    cout<<"membalikkan kata = ";
+    string terbalik;
+    terbalik = kata;
+    a = 0;
+    for(i = panjang - 1; i >= 0; i-- ){
+        terbalik[a] = kata[i];
+        a++;
+    }
+    cout<<terbalik;
+    return 0;
+}
